@@ -245,7 +245,7 @@ function initGRID(){
                 }
             }
         ]
-        ,mapper:[{
+        ,mapper:[{    
             name: 'LAU_ID', title: 'Cód.', width: 60, align: 'center'
         },{
             name: 'Livro', title: 'Livro', width: 60, align: 'center'        
