@@ -1,0 +1,23 @@
+table.dadosTabela{
+    border-collapse: collapse;
+    border-color: #DCDCDC;
+}
+
+table.dadosTabela .cabecalhoTabela, table.dadosTabela .rodapeTabela{
+    font-weight: bold;
+    background-color: #BBB;
+}
+
+table.dadosTabela tr.linhaNormal td { 
+    background: #EEE;
+    border:1px solid #DCDCDC;
+} 
+
+table.dadosTabela tr.linhaCor td {
+    background: #F4F4F4;
+    border:1px solid #DCDCDC;
+}
+
+table.dadosTabela tr.linhaNormal:hover td, table.dadosTabela tr.linhaCor:hover td{ 
+   background: #B7C1CA;
+} 

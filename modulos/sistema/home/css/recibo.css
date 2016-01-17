@@ -1,0 +1,61 @@
+*{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#containerRecibo{
+    width: 900px;    
+    margin: auto;
+}
+
+#containerRecibo #cabecalho{
+    overflow: hidden;
+}
+
+#containerRecibo #logo{
+    width: 500px;
+    float: left;
+}
+
+#containerRecibo #titulo{
+    width: 390px;
+    float: right;
+    text-align: right;
+    padding-right: 10px;
+}
+
+#containerRecibo #cabecalho, #containerRecibo #logo, #containerRecibo #titulo{
+    height: 100px;
+}
+
+#containerRecibo #titulo h1{
+    font-size: 30px;
+    margin-top: 40px;
+}
+
+table.dadosRecibo{
+    border-collapse: collapse;
+    border-color: #DCDCDC;
+    margin: auto;
+    width: 900px;
+}
+
+table.dadosRecibo tr td{
+    border: 1px solid #CCC;
+    padding: 5px;
+}
+
+table.dadosRecibo .cabecalhoRecibo{
+    background-color: #F4F4F4;
+}
+
+#containerRecibo #print{
+    text-align: right;
+}
+
+table#dadosRecibo .redondo{    
+    border: 1px #333 solid;    
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+     border-radius: 7px;
+     padding: 5px;
+}

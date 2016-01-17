@@ -1,0 +1,29 @@
+
+/* CONTEÚDO DOS MÓDULOS (TELAS) */
+#container-modulo {
+    position: relative; 
+    min-height: 95%; /* retira do 5% para o rodapé */
+}
+
+/* content-modulo está em principal.php localizado nos módulos */
+#container-modulo #content-modulo {
+    margin: 0px 10px 0px 170px;
+    padding: 0px;
+}
+
+#container-modulo .linhaModulo {
+    margin: 0px;
+    padding: 0px;
+}
+
+#container-modulo .linhaModulo .colunaModulo {
+    margin: 0px;
+    padding: 0px;
+    width: 145px;
+}
+
+#container-modulo .linhaModulo .colunaModulo img {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}

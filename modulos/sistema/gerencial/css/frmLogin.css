@@ -1,0 +1,42 @@
+/* codificação utf-8 */
+#container{
+    padding-top: 100px;
+    min-height: 85% !important;
+}
+
+#formulario{
+    background: url("../img/bg-login.jpg") no-repeat;
+    width: 360px;
+    height: 286px;
+    margin: auto;
+    padding-top: 24px;
+}
+
+#formulario img{
+    display: block;
+    margin: auto;
+}
+
+#formulario form{
+    width: 280px;
+    margin: 10px 40px 20px 40px;
+}
+
+#formulario form label{
+    color: #FFF;
+    display: block;
+}
+
+#versao p{
+    text-align: center;
+    margin-top: 20px;
+}
+
+#licenca p{
+    text-align: center;
+}
+
+a.linkEsqueceuSuaSenha{
+    color: #FFFFFF;
+    font-size: 11px;
+}

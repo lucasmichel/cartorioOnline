@@ -1,0 +1,683 @@
+-- MySQL dump 10.13  Distrib 5.6.24, for linux-glibc2.5 (x86_64)
+--
+-- Host: localhost    Database: CARTORIO_ONLINE
+-- ------------------------------------------------------
+-- Server version	5.6.21
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `CAD_ACO_ACOES`
+--
+
+DROP TABLE IF EXISTS `CAD_ACO_ACOES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_ACO_ACOES` (
+  `ACO_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ACO_Descricao` varchar(45) NOT NULL,
+  `ACO_Status` char(1) NOT NULL COMMENT 'A => Ativo, I => Inativo',
+  PRIMARY KEY (`ACO_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_ACO_ACOES`
+--
+
+LOCK TABLES `CAD_ACO_ACOES` WRITE;
+/*!40000 ALTER TABLE `CAD_ACO_ACOES` DISABLE KEYS */;
+INSERT INTO `CAD_ACO_ACOES` VALUES (1,'Salvar','A'),(2,'Alterar','A'),(3,'Consultar','A'),(4,'Excluir','A'),(5,'AUXILIAR_COMPLETO','A'),(6,'PREVIO_COMPLETO','A'),(7,'StatusConclusaoLinhaPrevio','A');
+/*!40000 ALTER TABLE `CAD_ACO_ACOES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_FAC_FORMULARIOS_ACOES`
+--
+
+DROP TABLE IF EXISTS `CAD_FAC_FORMULARIOS_ACOES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_FAC_FORMULARIOS_ACOES` (
+  `ACO_ID` int(11) NOT NULL,
+  `FRM_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ACO_ID`,`FRM_ID`),
+  KEY `FK_CAD_ACO_FRM` (`FRM_ID`),
+  KEY `FK_CAD_FRM_ACO` (`ACO_ID`),
+  CONSTRAINT `FK_CAD_ACO_FRM` FOREIGN KEY (`ACO_ID`) REFERENCES `CAD_ACO_ACOES` (`ACO_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_CAD_FRM_ACO` FOREIGN KEY (`FRM_ID`) REFERENCES `CAD_FRM_FORMULARIOS` (`FRM_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_FAC_FORMULARIOS_ACOES`
+--
+
+LOCK TABLES `CAD_FAC_FORMULARIOS_ACOES` WRITE;
+/*!40000 ALTER TABLE `CAD_FAC_FORMULARIOS_ACOES` DISABLE KEYS */;
+INSERT INTO `CAD_FAC_FORMULARIOS_ACOES` VALUES (3,1),(3,2),(1,3),(2,3),(3,3),(4,3),(1,4),(2,4),(3,4),(4,4),(1,5),(2,5),(3,5),(4,5),(1,6),(2,6),(3,6),(4,6),(3,7),(3,8),(1,9),(2,9),(3,9),(4,9),(1,10),(2,10),(3,10),(4,10),(1,11),(2,11),(3,11),(4,11),(1,12),(2,12),(3,12),(4,12),(5,12),(1,13),(2,13),(3,13),(4,13),(1,14),(2,14),(3,14),(4,14),(1,15),(2,15),(3,15),(4,15),(6,15),(7,15),(1,16),(2,16),(3,16),(3,17),(3,18);
+/*!40000 ALTER TABLE `CAD_FAC_FORMULARIOS_ACOES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_FRM_FORMULARIOS`
+--
+
+DROP TABLE IF EXISTS `CAD_FRM_FORMULARIOS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_FRM_FORMULARIOS` (
+  `FRM_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FRM_Descricao` varchar(45) NOT NULL,
+  `FRM_Caminho` varchar(150) NOT NULL,
+  `FRM_Status` char(1) NOT NULL COMMENT 'A => Ativo, I => Inativo',
+  PRIMARY KEY (`FRM_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COMMENT='Relaciona os menus.';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_FRM_FORMULARIOS`
+--
+
+LOCK TABLES `CAD_FRM_FORMULARIOS` WRITE;
+/*!40000 ALTER TABLE `CAD_FRM_FORMULARIOS` DISABLE KEYS */;
+INSERT INTO `CAD_FRM_FORMULARIOS` VALUES (1,'Cadastro de Modulos','frmModulo.php','A'),(2,'Cadastro de Categorias de Modulos','frmModuloCategoria.php','A'),(3,'Cadastro de Formulários','frmFormulario.php','A'),(4,'Controle de Permissões do Sistema','frmPermissao.php','A'),(5,'Controle de Grupos de Usuários','frmGrupo.php','A'),(6,'Controle de Usuários','frmUsuario.php','A'),(7,'Relatório dos Usuários','relAcessoUsuario.php','A'),(8,'Relatório de Grupos de Usuários','relGruposUsuario.php','A'),(9,'Cadastro Tipos de Linhas','frmTipoLinhaLivro.php','A'),(10,'Cadastro Livro Auxiliar','frmLivroAuxiliar.php','A'),(11,'Cadastro Folha Auxiliar','frmFolhaAuxiliar.php','A'),(12,'Cadastro Linha Auxiliar','frmLinhaAuxiliar.php','A'),(13,'Cadastro Livro Prévio','frmLivroPrevio.php','A'),(14,'Cadastro Folha Prévio','frmFolhaPrevio.php','A'),(15,'Cadastro Linha Prévio','frmLinhaPrevio.php','A'),(16,'Configuração do sistema','frmParametro.php','A'),(17,'Impressão Livro Prévio','frmPrintLivroPrevio.php','A'),(18,'Impressão Livro Auxiliar','frmPrintLivroAuxiliar.php','A');
+/*!40000 ALTER TABLE `CAD_FRM_FORMULARIOS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_GPE_GRUPOS_PERMISSOES`
+--
+
+DROP TABLE IF EXISTS `CAD_GPE_GRUPOS_PERMISSOES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_GPE_GRUPOS_PERMISSOES` (
+  `GRU_ID` int(11) NOT NULL,
+  `ACO_ID` int(11) NOT NULL,
+  `FRM_ID` int(11) NOT NULL,
+  PRIMARY KEY (`GRU_ID`,`ACO_ID`,`FRM_ID`),
+  KEY `FK_GPE_FRM_ID_ACO_ID` (`ACO_ID`,`FRM_ID`),
+  KEY `FK_GPE_GRU_ID` (`GRU_ID`),
+  CONSTRAINT `FK_GPE_FRM_ID_ACO_ID` FOREIGN KEY (`ACO_ID`, `FRM_ID`) REFERENCES `CAD_FAC_FORMULARIOS_ACOES` (`ACO_ID`, `FRM_ID`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `FK_GPE_GRU_ID` FOREIGN KEY (`GRU_ID`) REFERENCES `CAD_GRU_GRUPOS_USUARIOS` (`GRU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_GPE_GRUPOS_PERMISSOES`
+--
+
+LOCK TABLES `CAD_GPE_GRUPOS_PERMISSOES` WRITE;
+/*!40000 ALTER TABLE `CAD_GPE_GRUPOS_PERMISSOES` DISABLE KEYS */;
+INSERT INTO `CAD_GPE_GRUPOS_PERMISSOES` VALUES (1,1,3),(1,1,4),(1,1,5),(1,1,6),(1,1,9),(1,1,10),(1,1,11),(1,1,12),(1,1,13),(1,1,14),(1,1,15),(1,1,16),(1,2,3),(1,2,4),(1,2,5),(1,2,6),(1,2,9),(1,2,10),(1,2,11),(1,2,12),(1,2,13),(1,2,14),(1,2,15),(1,2,16),(1,3,1),(1,3,2),(1,3,3),(1,3,4),(1,3,5),(1,3,6),(1,3,7),(1,3,8),(1,3,9),(1,3,10),(1,3,11),(1,3,12),(1,3,13),(1,3,14),(1,3,15),(1,3,16),(1,3,17),(1,3,18),(1,4,3),(1,4,4),(1,4,5),(1,4,6),(1,4,9),(1,4,10),(1,4,11),(1,4,12),(1,4,13),(1,4,14),(1,4,15),(1,5,12),(1,6,15),(1,7,15),(2,1,15),(2,3,15);
+/*!40000 ALTER TABLE `CAD_GPE_GRUPOS_PERMISSOES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_GRU_GRUPOS_USUARIOS`
+--
+
+DROP TABLE IF EXISTS `CAD_GRU_GRUPOS_USUARIOS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_GRU_GRUPOS_USUARIOS` (
+  `GRU_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GRU_Descricao` varchar(45) NOT NULL,
+  `GRU_Status` char(1) NOT NULL DEFAULT 'I',
+  PRIMARY KEY (`GRU_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Grupos de usuários. (Perfis)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_GRU_GRUPOS_USUARIOS`
+--
+
+LOCK TABLES `CAD_GRU_GRUPOS_USUARIOS` WRITE;
+/*!40000 ALTER TABLE `CAD_GRU_GRUPOS_USUARIOS` DISABLE KEYS */;
+INSERT INTO `CAD_GRU_GRUPOS_USUARIOS` VALUES (1,'ADMINISTRADOR','A'),(2,'LIVRO_PREVIO_RESTRITO','A');
+/*!40000 ALTER TABLE `CAD_GRU_GRUPOS_USUARIOS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_LOG_LOGS`
+--
+
+DROP TABLE IF EXISTS `CAD_LOG_LOGS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_LOG_LOGS` (
+  `LOG_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USU_ID` int(11) NOT NULL COMMENT 'Usuário que realizou a ação.',
+  `LOG_SQL` text NOT NULL,
+  `LOG_DataHora` datetime NOT NULL,
+  PRIMARY KEY (`LOG_ID`),
+  KEY `FK_CAD_USU_LOG` (`USU_ID`),
+  CONSTRAINT `FK_CAD_USU_LOG` FOREIGN KEY (`USU_ID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_LOG_LOGS`
+--
+
+LOCK TABLES `CAD_LOG_LOGS` WRITE;
+/*!40000 ALTER TABLE `CAD_LOG_LOGS` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CAD_LOG_LOGS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_MCT_MODULOS_CATEGORIAS`
+--
+
+DROP TABLE IF EXISTS `CAD_MCT_MODULOS_CATEGORIAS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_MCT_MODULOS_CATEGORIAS` (
+  `MCT_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MCT_Descricao` text NOT NULL,
+  `MCT_Imagem` text NOT NULL,
+  `MCT_BackgroundModulo` text NOT NULL,
+  `MCT_BackgroundSubModulo` text NOT NULL,
+  `MCT_Ordem` int(11) NOT NULL COMMENT 'Indica a ordem que será exibido o menu. Nao pode repetir.',
+  `MCT_Status` char(1) NOT NULL DEFAULT 'I' COMMENT 'A => Ativo, I => Inativo',
+  PRIMARY KEY (`MCT_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_MCT_MODULOS_CATEGORIAS`
+--
+
+LOCK TABLES `CAD_MCT_MODULOS_CATEGORIAS` WRITE;
+/*!40000 ALTER TABLE `CAD_MCT_MODULOS_CATEGORIAS` DISABLE KEYS */;
+INSERT INTO `CAD_MCT_MODULOS_CATEGORIAS` VALUES (1,'Sistema','botao-modulo-sistema.png','bg-modulo-azul.jpg','bg-submodulo-azul.jpg',1,'A'),(2,'Livros de Registos','botao-modulo-livrosRegistros.png','bg-modulo-verde.jpg','bg-submodulo-verde.jpg',2,'A');
+/*!40000 ALTER TABLE `CAD_MCT_MODULOS_CATEGORIAS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_MFR_MODULOS_FORMULARIOS`
+--
+
+DROP TABLE IF EXISTS `CAD_MFR_MODULOS_FORMULARIOS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_MFR_MODULOS_FORMULARIOS` (
+  `MOD_ID` int(11) NOT NULL,
+  `FRM_ID` int(11) NOT NULL,
+  `MFR_Nivel1Descricao` text,
+  `MFR_Nivel2Descricao` text,
+  `MFR_Nivel3Descricao` text,
+  `MFR_Nivel1Ordem` int(11) DEFAULT NULL,
+  `MFR_Nivel2Ordem` int(11) DEFAULT NULL,
+  `MFR_Nivel3Ordem` int(11) DEFAULT NULL,
+  PRIMARY KEY (`MOD_ID`,`FRM_ID`),
+  KEY `FK_CAD_FRM_MOD` (`FRM_ID`),
+  KEY `FK_CAD_MOD_FRM` (`MOD_ID`),
+  CONSTRAINT `FK_CAD_FRM_MOD` FOREIGN KEY (`MOD_ID`) REFERENCES `CAD_MOD_MODULOS` (`MOD_ID`) ON DELETE NO ACTION,
+  CONSTRAINT `FK_CAD_MOD_FRM` FOREIGN KEY (`FRM_ID`) REFERENCES `CAD_FRM_FORMULARIOS` (`FRM_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_MFR_MODULOS_FORMULARIOS`
+--
+
+LOCK TABLES `CAD_MFR_MODULOS_FORMULARIOS` WRITE;
+/*!40000 ALTER TABLE `CAD_MFR_MODULOS_FORMULARIOS` DISABLE KEYS */;
+INSERT INTO `CAD_MFR_MODULOS_FORMULARIOS` VALUES (1,1,'Estrutura +','Submódulos',NULL,NULL,NULL,NULL),(1,2,'Estrutura +','Módulos',NULL,NULL,NULL,NULL),(1,3,'Formulários','','',NULL,NULL,NULL),(1,4,'Permissões','','',NULL,NULL,NULL),(1,5,'Usuários +','Grupos de Usuários','',NULL,NULL,NULL),(1,6,'Usuários +','Cadastros','',NULL,NULL,NULL),(1,7,'Relatórios +','Usuários','',NULL,NULL,NULL),(1,8,'Relatórios +','Grupos de Usuários','',NULL,NULL,NULL),(1,16,'Configuração','','',NULL,NULL,NULL),(2,9,'Tipos de Linhas de Livro','','',NULL,NULL,NULL),(3,10,'Livro Auxiliar','','',NULL,NULL,NULL),(3,11,'Folha Auxiliar','','',NULL,NULL,NULL),(3,12,'Linha Auxiliar','','',NULL,NULL,NULL),(4,13,'Livro Prévio','','',NULL,NULL,NULL),(4,14,'Folha Prévio','','',NULL,NULL,NULL),(4,15,'Linha Prévio','','',NULL,NULL,NULL),(5,17,'Impressão Livro Prévio','','',NULL,NULL,NULL),(5,18,'Impressão Livro Auxiliar','','',NULL,NULL,NULL);
+/*!40000 ALTER TABLE `CAD_MFR_MODULOS_FORMULARIOS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_MOD_MODULOS`
+--
+
+DROP TABLE IF EXISTS `CAD_MOD_MODULOS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_MOD_MODULOS` (
+  `MOD_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `MCT_ID` int(11) NOT NULL,
+  `MOD_Descricao` text NOT NULL,
+  `MOD_Caminho` text NOT NULL,
+  `MOD_Imagem` text NOT NULL,
+  `MOD_Status` char(1) NOT NULL DEFAULT 'I' COMMENT 'A => Ativo, I => Inativo',
+  PRIMARY KEY (`MOD_ID`),
+  KEY `FK_CAD_MCT_MOD` (`MCT_ID`),
+  CONSTRAINT `FK_CAD_MCT_MOD` FOREIGN KEY (`MCT_ID`) REFERENCES `CAD_MCT_MODULOS_CATEGORIAS` (`MCT_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_MOD_MODULOS`
+--
+
+LOCK TABLES `CAD_MOD_MODULOS` WRITE;
+/*!40000 ALTER TABLE `CAD_MOD_MODULOS` DISABLE KEYS */;
+INSERT INTO `CAD_MOD_MODULOS` VALUES (1,1,'Gerencial (Cadastros)','sistema/gerencial/','sistema/sm-gerencial.png','A'),(2,2,'Tipos de Linhas dos Livros','livroRegistro/tipo-linha-livro/','livro-registro/sm-tipo-livro.png','A'),(3,2,'Livro Auxiliar','livroRegistro/livro-auxiliar/','livro-registro/sm-livro-auxiliar.png','A'),(4,2,'Livro Prévio','livroRegistro/livro-previo/','livro-registro/sm-livro-previo.png','A'),(5,2,'Gráficos e Impressões','livroRegistro/grafico-impressao/','livro-registro/sm-livo-grafico.png','A');
+/*!40000 ALTER TABLE `CAD_MOD_MODULOS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_PAR_PARAMETROS`
+--
+
+DROP TABLE IF EXISTS `CAD_PAR_PARAMETROS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_PAR_PARAMETROS` (
+  `PAR_CNPJ` int(11) NOT NULL,
+  `PAR_RazaoSocial` varchar(45) DEFAULT NULL,
+  `PAR_NomeFantasia` varchar(45) DEFAULT NULL,
+  `PAR_Denominacao` varchar(45) DEFAULT NULL,
+  `PAR_Site` varchar(45) DEFAULT NULL,
+  `PAR_Pastor` varchar(45) DEFAULT NULL,
+  `PAR_EnderecoLogradouro` varchar(45) DEFAULT NULL,
+  `PAR_EnderecoNumero` varchar(45) DEFAULT NULL,
+  `PAR_EnderecoComplemento` varchar(45) DEFAULT NULL,
+  `PAR_EnderecoBairro` varchar(45) DEFAULT NULL,
+  `PAR_EnderecoCidade` varchar(45) DEFAULT NULL,
+  `PAR_EnderecoUf` varchar(45) DEFAULT NULL,
+  `PAR_EnderecoCep` varchar(45) DEFAULT NULL,
+  `PAR_Logo` varchar(45) DEFAULT NULL,
+  `PAR_TotFolhaLivro` varchar(45) DEFAULT NULL,
+  `PAR_TotLinhaFolha` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`PAR_CNPJ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_PAR_PARAMETROS`
+--
+
+LOCK TABLES `CAD_PAR_PARAMETROS` WRITE;
+/*!40000 ALTER TABLE `CAD_PAR_PARAMETROS` DISABLE KEYS */;
+INSERT INTO `CAD_PAR_PARAMETROS` VALUES (0,'','','','','','','','','','','','','','2','4');
+/*!40000 ALTER TABLE `CAD_PAR_PARAMETROS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_SYS_SYSTEM`
+--
+
+DROP TABLE IF EXISTS `CAD_SYS_SYSTEM`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_SYS_SYSTEM` (
+  `SYS_Versao` varchar(20) NOT NULL,
+  `SYS_QuantidadeMaxMembros` int(11) NOT NULL,
+  `SYS_CodigoUnicoCliente` varchar(45) DEFAULT NULL COMMENT 'Atualizado via sistema MS'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_SYS_SYSTEM`
+--
+
+LOCK TABLES `CAD_SYS_SYSTEM` WRITE;
+/*!40000 ALTER TABLE `CAD_SYS_SYSTEM` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CAD_SYS_SYSTEM` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_UPE_USUARIOS_PERMISSOES`
+--
+
+DROP TABLE IF EXISTS `CAD_UPE_USUARIOS_PERMISSOES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_UPE_USUARIOS_PERMISSOES` (
+  `ACO_ID` int(11) NOT NULL,
+  `FRM_ID` int(11) NOT NULL,
+  `USU_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ACO_ID`,`FRM_ID`,`USU_ID`),
+  KEY `FK_CAD_USU_FAC` (`USU_ID`),
+  KEY `FK_CAD_FAC_USU` (`ACO_ID`,`FRM_ID`),
+  CONSTRAINT `FK_CAD_FAC_USU` FOREIGN KEY (`USU_ID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION,
+  CONSTRAINT `FK_CAD_USU_FAC` FOREIGN KEY (`ACO_ID`, `FRM_ID`) REFERENCES `CAD_FAC_FORMULARIOS_ACOES` (`ACO_ID`, `FRM_ID`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_UPE_USUARIOS_PERMISSOES`
+--
+
+LOCK TABLES `CAD_UPE_USUARIOS_PERMISSOES` WRITE;
+/*!40000 ALTER TABLE `CAD_UPE_USUARIOS_PERMISSOES` DISABLE KEYS */;
+/*!40000 ALTER TABLE `CAD_UPE_USUARIOS_PERMISSOES` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_USA_USUARIOS_ACESSOS`
+--
+
+DROP TABLE IF EXISTS `CAD_USA_USUARIOS_ACESSOS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_USA_USUARIOS_ACESSOS` (
+  `USA_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USU_ID` int(11) NOT NULL,
+  `USA_DataHora` datetime NOT NULL,
+  PRIMARY KEY (`USA_ID`),
+  KEY `FK_CAD_USU_USA` (`USU_ID`),
+  CONSTRAINT `FK_CAD_USU_USA` FOREIGN KEY (`USU_ID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_USA_USUARIOS_ACESSOS`
+--
+
+LOCK TABLES `CAD_USA_USUARIOS_ACESSOS` WRITE;
+/*!40000 ALTER TABLE `CAD_USA_USUARIOS_ACESSOS` DISABLE KEYS */;
+INSERT INTO `CAD_USA_USUARIOS_ACESSOS` VALUES (1,1,'2015-07-20 20:37:18'),(2,1,'2015-07-20 20:38:31'),(3,1,'2015-07-22 12:46:23'),(4,1,'2015-07-22 22:11:20'),(5,1,'2015-07-26 10:20:53'),(6,1,'2015-07-26 12:18:20'),(7,1,'2015-07-27 12:57:12'),(8,1,'2015-07-27 20:52:27'),(9,1,'2015-08-05 20:38:17'),(10,1,'2015-08-15 08:50:42'),(11,1,'2015-08-17 12:57:06'),(12,1,'2015-08-17 20:33:00'),(13,1,'2015-08-18 19:30:33'),(14,1,'2015-08-18 19:57:29'),(15,2,'2015-08-18 21:24:45'),(16,1,'2015-08-18 21:26:57'),(17,1,'2015-08-22 10:37:45'),(18,1,'2015-08-26 13:01:28'),(19,1,'2015-08-29 10:06:15'),(20,1,'2015-08-30 10:59:08'),(21,1,'2015-08-30 12:16:24'),(22,1,'2015-08-30 12:36:05'),(23,1,'2015-08-31 20:52:16'),(24,1,'2015-09-16 19:52:14'),(25,1,'2015-09-16 21:30:17'),(26,1,'2015-09-25 12:59:45');
+/*!40000 ALTER TABLE `CAD_USA_USUARIOS_ACESSOS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `CAD_USU_USUARIOS`
+--
+
+DROP TABLE IF EXISTS `CAD_USU_USUARIOS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CAD_USU_USUARIOS` (
+  `USU_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `GRU_ID` int(11) NOT NULL,
+  `USU_Login` varchar(45) NOT NULL,
+  `USU_Senha` text NOT NULL,
+  `USU_Email` varchar(45) DEFAULT NULL,
+  `USU_Telefone` varchar(20) DEFAULT NULL,
+  `USU_DataHoraCadastro` datetime NOT NULL,
+  `USU_DataHoraUltimoAcesso` datetime DEFAULT NULL,
+  `USU_Status` char(1) NOT NULL DEFAULT 'I' COMMENT 'A => Ativo, I => Inativo',
+  `USU_Nome` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`USU_ID`),
+  UNIQUE KEY `USU_Login_UNIQUE` (`USU_Login`),
+  KEY `FK_CAD_GRU_USU` (`GRU_ID`),
+  CONSTRAINT `FK_USU_GRU_ID` FOREIGN KEY (`GRU_ID`) REFERENCES `CAD_GRU_GRUPOS_USUARIOS` (`GRU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Controle dos usuários do sistema.';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CAD_USU_USUARIOS`
+--
+
+LOCK TABLES `CAD_USU_USUARIOS` WRITE;
+/*!40000 ALTER TABLE `CAD_USU_USUARIOS` DISABLE KEYS */;
+INSERT INTO `CAD_USU_USUARIOS` VALUES (1,1,'ADMIN','202cb962ac59075b964b07152d234b70','amin@gmail.com','','2014-02-25 00:00:00','2015-09-25 12:59:45','A',NULL),(2,2,'PREVIO_RESTRITO','b1a28207b0cc997852d4b22282e6242c','PREVIO_RESTRITO@GMAIL.COM','','2015-08-18 21:24:34','2015-08-18 21:24:45','A','PREVIO_RESTRITO');
+/*!40000 ALTER TABLE `CAD_USU_USUARIOS` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIR_FAU_FOLHA_AUXILIAR`
+--
+
+DROP TABLE IF EXISTS `LIR_FAU_FOLHA_AUXILIAR`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIR_FAU_FOLHA_AUXILIAR` (
+  `FAU_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LIA_ID` int(11) NOT NULL,
+  `USU_UsuarioCadastroID` int(11) NOT NULL,
+  `USU_UsuarioAlteracaoID` int(11) DEFAULT NULL,
+  `FAU_NumeroFolha` varchar(45) NOT NULL,
+  `FAU_DataFolha` date NOT NULL,
+  `FAU_DataHoraCadastro` datetime NOT NULL,
+  `FAU_DataHoraAlteracao` datetime DEFAULT NULL,
+  PRIMARY KEY (`FAU_ID`,`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_LFA_LIVRO_FOLHA_AUXILIAR_LIR_LIA_LIVRO_AUXILIAR1_idx` (`LIA_ID`),
+  KEY `fk_LIR_LFA_LIVRO_FOLHA_AUXILIAR_CAD_USU_USUARIOS1_idx` (`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_LFA_LIVRO_FOLHA_AUXILIAR_CAD_USU_USUARIOS2_idx` (`USU_UsuarioAlteracaoID`),
+  CONSTRAINT `fk_LIR_LFA_LIVRO_FOLHA_AUXILIAR_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_UsuarioCadastroID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_LFA_LIVRO_FOLHA_AUXILIAR_CAD_USU_USUARIOS2` FOREIGN KEY (`USU_UsuarioAlteracaoID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_LFA_LIVRO_FOLHA_AUXILIAR_LIR_LIA_LIVRO_AUXILIAR1` FOREIGN KEY (`LIA_ID`) REFERENCES `LIR_LIA_LIVRO_AUXILIAR` (`LIA_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIR_FAU_FOLHA_AUXILIAR`
+--
+
+LOCK TABLES `LIR_FAU_FOLHA_AUXILIAR` WRITE;
+/*!40000 ALTER TABLE `LIR_FAU_FOLHA_AUXILIAR` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LIR_FAU_FOLHA_AUXILIAR` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIR_FPR_FOLHA_PREVIO`
+--
+
+DROP TABLE IF EXISTS `LIR_FPR_FOLHA_PREVIO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIR_FPR_FOLHA_PREVIO` (
+  `FPR_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LIP_ID` int(11) NOT NULL,
+  `USU_UsuarioCadastroID` int(11) NOT NULL,
+  `USU_UsuarioAlteracaoID` int(11) DEFAULT NULL,
+  `FPR_NumeroFolha` varchar(45) NOT NULL,
+  `FPR_DataFolha` date NOT NULL,
+  `FPR_DataHoraCadastro` datetime NOT NULL,
+  `FPR_DataHoraAlteracao` datetime DEFAULT NULL,
+  PRIMARY KEY (`FPR_ID`,`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_LFP_LIVRO_FOLHA_PREVIO_LIR_LIP_LIVRO_PREVIO1_idx` (`LIP_ID`),
+  KEY `fk_LIR_LFP_LIVRO_FOLHA_PREVIO_CAD_USU_USUARIOS1_idx` (`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_LFP_LIVRO_FOLHA_PREVIO_CAD_USU_USUARIOS2_idx` (`USU_UsuarioAlteracaoID`),
+  CONSTRAINT `fk_LIR_LFP_LIVRO_FOLHA_PREVIO_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_UsuarioCadastroID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_LFP_LIVRO_FOLHA_PREVIO_CAD_USU_USUARIOS2` FOREIGN KEY (`USU_UsuarioAlteracaoID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_LFP_LIVRO_FOLHA_PREVIO_LIR_LIP_LIVRO_PREVIO1` FOREIGN KEY (`LIP_ID`) REFERENCES `LIR_LIP_LIVRO_PREVIO` (`LIP_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIR_FPR_FOLHA_PREVIO`
+--
+
+LOCK TABLES `LIR_FPR_FOLHA_PREVIO` WRITE;
+/*!40000 ALTER TABLE `LIR_FPR_FOLHA_PREVIO` DISABLE KEYS */;
+INSERT INTO `LIR_FPR_FOLHA_PREVIO` VALUES (1,1,1,NULL,'1','2015-07-22','0000-00-00 00:00:00',NULL),(2,2,1,NULL,'1','2015-08-18','0000-00-00 00:00:00',NULL),(3,2,2,NULL,'2','2015-08-18','2015-08-18 21:25:27',NULL),(4,3,2,NULL,'1','2015-08-18','2015-08-18 21:26:43',NULL);
+/*!40000 ALTER TABLE `LIR_FPR_FOLHA_PREVIO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIR_LAU_LINHA_AUXILIAR`
+--
+
+DROP TABLE IF EXISTS `LIR_LAU_LINHA_AUXILIAR`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIR_LAU_LINHA_AUXILIAR` (
+  `LAU_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FAU_ID` int(11) NOT NULL,
+  `TIL_ID` int(11) NOT NULL,
+  `USU_UsuarioCadastroID` int(11) NOT NULL,
+  `USU_UsuarioAlteracaoID` int(11) DEFAULT NULL,
+  `LAU_Descricao` text NOT NULL,
+  `LAU_Guia` text,
+  `LAU_ProtocoloRecepcao` text,
+  `LAU_Quantidade` int(11) DEFAULT NULL,
+  `LAU_Cpf` varchar(45) DEFAULT NULL,
+  `LAU_Data` date DEFAULT NULL,
+  `LAU_Valor` double DEFAULT NULL,
+  `LAU_DataHoraCadastro` datetime NOT NULL,
+  `LAU_DataHoraAlteracao` datetime DEFAULT NULL,
+  PRIMARY KEY (`LAU_ID`),
+  KEY `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_LIR_LFA_LIVRO_FOLHA_AUXILIA_idx` (`FAU_ID`),
+  KEY `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_LIR_TLA_TIPO_LIVRO_AUXILIAR_idx` (`TIL_ID`),
+  KEY `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_CAD_USU_USUARIOS1_idx` (`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_CAD_USU_USUARIOS2_idx` (`USU_UsuarioAlteracaoID`),
+  CONSTRAINT `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_UsuarioCadastroID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_CAD_USU_USUARIOS2` FOREIGN KEY (`USU_UsuarioAlteracaoID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_LIR_LFA_LIVRO_FOLHA_AUXILIAR1` FOREIGN KEY (`FAU_ID`) REFERENCES `LIR_FAU_FOLHA_AUXILIAR` (`FAU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_FLA_FOLHA_LINHA_AUXILIAR_LIR_TLA_TIPO_LIVRO_AUXILIAR1` FOREIGN KEY (`TIL_ID`) REFERENCES `LIR_TIL_TIPO_LINHA` (`TIL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIR_LAU_LINHA_AUXILIAR`
+--
+
+LOCK TABLES `LIR_LAU_LINHA_AUXILIAR` WRITE;
+/*!40000 ALTER TABLE `LIR_LAU_LINHA_AUXILIAR` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LIR_LAU_LINHA_AUXILIAR` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIR_LIA_LIVRO_AUXILIAR`
+--
+
+DROP TABLE IF EXISTS `LIR_LIA_LIVRO_AUXILIAR`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIR_LIA_LIVRO_AUXILIAR` (
+  `LIA_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LIA_NumeroLivro` varchar(45) NOT NULL,
+  `LIA_DataHoraCadastro` datetime NOT NULL,
+  `USU_UsuarioCadastroID` int(11) NOT NULL,
+  PRIMARY KEY (`LIA_ID`,`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_LIA_LIVRO_AUXILIAR_CAD_USU_USUARIOS1_idx` (`USU_UsuarioCadastroID`),
+  CONSTRAINT `fk_LIR_LIA_LIVRO_AUXILIAR_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_UsuarioCadastroID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIR_LIA_LIVRO_AUXILIAR`
+--
+
+LOCK TABLES `LIR_LIA_LIVRO_AUXILIAR` WRITE;
+/*!40000 ALTER TABLE `LIR_LIA_LIVRO_AUXILIAR` DISABLE KEYS */;
+/*!40000 ALTER TABLE `LIR_LIA_LIVRO_AUXILIAR` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIR_LIP_LIVRO_PREVIO`
+--
+
+DROP TABLE IF EXISTS `LIR_LIP_LIVRO_PREVIO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIR_LIP_LIVRO_PREVIO` (
+  `LIP_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `LIP_NumeroLivro` varchar(45) NOT NULL,
+  `LIP_DataHoraCadastro` datetime NOT NULL,
+  `USU_UsuarioCadastroID` int(11) NOT NULL,
+  PRIMARY KEY (`LIP_ID`,`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_LIP_LIVRO_PREVIO_CAD_USU_USUARIOS1_idx` (`USU_UsuarioCadastroID`),
+  CONSTRAINT `fk_LIR_LIP_LIVRO_PREVIO_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_UsuarioCadastroID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIR_LIP_LIVRO_PREVIO`
+--
+
+LOCK TABLES `LIR_LIP_LIVRO_PREVIO` WRITE;
+/*!40000 ALTER TABLE `LIR_LIP_LIVRO_PREVIO` DISABLE KEYS */;
+INSERT INTO `LIR_LIP_LIVRO_PREVIO` VALUES (1,'1','2015-07-22 12:54:07',1),(2,'2','2015-08-18 21:05:28',1),(3,'3','2015-08-18 21:26:43',2);
+/*!40000 ALTER TABLE `LIR_LIP_LIVRO_PREVIO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIR_LPR_LINHA_PREVIO`
+--
+
+DROP TABLE IF EXISTS `LIR_LPR_LINHA_PREVIO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIR_LPR_LINHA_PREVIO` (
+  `LPR_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FPR_ID` int(11) NOT NULL,
+  `TIL_ID` int(11) DEFAULT NULL,
+  `USU_UsuarioCadastroID` int(11) NOT NULL,
+  `USU_UsuarioAlteracaoID` int(11) DEFAULT NULL,
+  `LPR_Descricao` text,
+  `LPR_Guia` varchar(45) DEFAULT NULL,
+  `LPR_Nome` varchar(100) DEFAULT NULL,
+  `LPR_Cpf` varchar(45) DEFAULT NULL,
+  `LPR_Quantidade` int(11) DEFAULT NULL,
+  `LPR_Data` date DEFAULT NULL,
+  `LPR_Valor` double DEFAULT NULL,
+  `LPR_DataHoraCadastro` datetime NOT NULL,
+  `LPR_DataHoraAlteracao` datetime DEFAULT NULL,
+  `LPR_StatusConclusao` char(1) NOT NULL COMMENT 'S=SIM,N=NAO',
+  `LPR_DataHoraStatusConclusao` datetime DEFAULT NULL,
+  `USU_StatusConclusao_ID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`LPR_ID`),
+  KEY `fk_LIR_FLP_FOLHA_LINHA_PREVIO_LIR_LFP_LIVRO_FOLHA_PREVIO1_idx` (`FPR_ID`),
+  KEY `fk_LIR_FLP_FOLHA_LINHA_PREVIO_CAD_USU_USUARIOS1_idx` (`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_FLP_FOLHA_LINHA_PREVIO_CAD_USU_USUARIOS2_idx` (`USU_UsuarioAlteracaoID`),
+  KEY `fk_LIR_FLP_FOLHA_LINHA_PREVIO_LIR_TIL_TIPO_LINHA1_idx` (`TIL_ID`),
+  KEY `fk_LIR_LPR_LINHA_PREVIO_CAD_USU_USUARIOS1_idx` (`USU_StatusConclusao_ID`),
+  CONSTRAINT `fk_LIR_FLP_FOLHA_LINHA_PREVIO_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_UsuarioCadastroID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_FLP_FOLHA_LINHA_PREVIO_CAD_USU_USUARIOS2` FOREIGN KEY (`USU_UsuarioAlteracaoID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_FLP_FOLHA_LINHA_PREVIO_LIR_LFP_LIVRO_FOLHA_PREVIO1` FOREIGN KEY (`FPR_ID`) REFERENCES `LIR_FPR_FOLHA_PREVIO` (`FPR_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_FLP_FOLHA_LINHA_PREVIO_LIR_TIL_TIPO_LINHA1` FOREIGN KEY (`TIL_ID`) REFERENCES `LIR_TIL_TIPO_LINHA` (`TIL_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_LPR_LINHA_PREVIO_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_StatusConclusao_ID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIR_LPR_LINHA_PREVIO`
+--
+
+LOCK TABLES `LIR_LPR_LINHA_PREVIO` WRITE;
+/*!40000 ALTER TABLE `LIR_LPR_LINHA_PREVIO` DISABLE KEYS */;
+INSERT INTO `LIR_LPR_LINHA_PREVIO` VALUES (2,1,0,1,NULL,'ASDASD','ASDASD','ASDASD','324.234.234-32',3,'2015-07-22',2.34,'2015-07-22 22:15:30',NULL,'N',NULL,NULL),(3,1,0,1,NULL,'RG','DFG','DFG','345.345.435-34',4,'2015-07-22',23.33,'2015-07-22 22:36:17',NULL,'N',NULL,NULL),(4,1,0,1,NULL,'DFGDG','DFGFD','DDFG','345.454.354-35',3,'2015-07-22',324.34,'2015-07-22 22:36:32',NULL,'N',NULL,NULL),(5,1,0,1,NULL,'SDFDSF','SDFSDF','SDFDSF','353.454.354-35',45,'2015-07-30',345.34,'2015-07-22 22:36:46',NULL,'S','2015-07-22 23:48:29',1),(6,2,NULL,1,NULL,'DESC','GUIA','NAJSNDJK','980.348.923-48',908,'2015-08-18',0.23,'2015-08-18 21:08:10',NULL,'S','2015-08-18 21:11:37',1),(7,2,NULL,1,NULL,'SACANJNJ','NKNKJN','JKNJKNJK','213.123.123-21',21312,'2015-08-18',21.31,'2015-08-18 21:08:42',NULL,'S','2015-08-18 21:11:50',1),(8,2,NULL,1,NULL,'23EADASDAS','ASDSDASDASD','ASD','123.131.231-23',21,'2015-08-11',2.33,'2015-08-18 21:10:49',NULL,'N',NULL,NULL),(9,2,NULL,1,NULL,'JNIJI','JIOJ','JIOJOJOIJ','231.231.232-13',2321,'2015-08-11',NULL,'2015-08-18 21:11:06',NULL,'N',NULL,NULL),(10,3,NULL,2,NULL,'LINHA RESTRITO','GUIA RESTRITO','NOME RESTRITO','',0,'0000-00-00',NULL,'2015-08-18 21:25:27',NULL,'N',NULL,NULL),(11,3,NULL,2,NULL,'KJKJLJKL','KLJKLJK','KLJKLJ','',0,'0000-00-00',NULL,'2015-08-18 21:26:05',NULL,'N',NULL,NULL),(12,3,NULL,2,NULL,'KLMKLM','MKLM','KLMKL','',0,'0000-00-00',NULL,'2015-08-18 21:26:23',NULL,'N',NULL,NULL),(13,3,NULL,2,NULL,'KLMKLMKLMKLM','KLMKLM','KLMKL','',0,'0000-00-00',NULL,'2015-08-18 21:26:35',NULL,'N',NULL,NULL),(14,4,NULL,2,NULL,'LKMKLMK','MKLMKL','MKL','',0,'0000-00-00',NULL,'2015-08-18 21:26:43',NULL,'N',NULL,NULL);
+/*!40000 ALTER TABLE `LIR_LPR_LINHA_PREVIO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `LIR_TIL_TIPO_LINHA`
+--
+
+DROP TABLE IF EXISTS `LIR_TIL_TIPO_LINHA`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `LIR_TIL_TIPO_LINHA` (
+  `TIL_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `TIL_Descricao` varchar(45) NOT NULL,
+  `TIL_Tipo` varchar(1) NOT NULL COMMENT 'D: desepesa\nR: receita',
+  `TIL_DataHoraCadastro` datetime NOT NULL,
+  `TIL_DataHoraAlteracao` datetime DEFAULT NULL,
+  `TIL_Status` varchar(1) NOT NULL COMMENT 'A: ativo\nI: inativo',
+  `USU_UsuarioCadastroID` int(11) NOT NULL,
+  `USU_UsuarioAlteracaoID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`TIL_ID`,`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_TLA_TIPO_LINHA_AUXILIAR_CAD_USU_USUARIOS1_idx` (`USU_UsuarioCadastroID`),
+  KEY `fk_LIR_TLA_TIPO_LINHA_AUXILIAR_CAD_USU_USUARIOS2_idx` (`USU_UsuarioAlteracaoID`),
+  CONSTRAINT `fk_LIR_TLA_TIPO_LINHA_AUXILIAR_CAD_USU_USUARIOS1` FOREIGN KEY (`USU_UsuarioCadastroID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_LIR_TLA_TIPO_LINHA_AUXILIAR_CAD_USU_USUARIOS2` FOREIGN KEY (`USU_UsuarioAlteracaoID`) REFERENCES `CAD_USU_USUARIOS` (`USU_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `LIR_TIL_TIPO_LINHA`
+--
+
+LOCK TABLES `LIR_TIL_TIPO_LINHA` WRITE;
+/*!40000 ALTER TABLE `LIR_TIL_TIPO_LINHA` DISABLE KEYS */;
+INSERT INTO `LIR_TIL_TIPO_LINHA` VALUES (1,'DESPESA1','D','2015-07-22 23:13:32',NULL,'A',1,NULL),(2,'RECEITA1','R','2015-07-22 23:13:41',NULL,'A',1,NULL);
+/*!40000 ALTER TABLE `LIR_TIL_TIPO_LINHA` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-10-02 15:59:26

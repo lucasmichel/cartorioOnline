@@ -1,0 +1,122 @@
+/* codificação utf-8 */
+/* Menu */
+#menu {
+    width: 100%;
+    background-color: black;
+    width: 140px;
+    float: left;
+    position: relative;
+    margin-left: 10px;
+}
+
+ul#navmenu-v{
+    width: 150px;
+    margin: 0px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+ul#navmenu-v li, ul#navmenu-v li ul {
+    width: 150px;
+    margin: 0px;
+    list-style: none;
+}
+
+ul#navmenu-v li{
+    position: relative;
+}
+
+ul#navmenu-v li {
+    float: left;
+}
+ul#navmenu-v li.iehover {
+    z-index: 1000; /* IE z-index bugfix */
+}
+
+ul#navmenu-v li ul {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 150px;
+    z-index: 9999;
+    margin: 0px;
+    padding: 0px;
+}
+
+ul#navmenu-v li ul li {
+    position: relative;
+}
+
+ul#navmenu-v li ul li ul {
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 150px;
+    z-index: 9999;
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Root Menu */
+ul#navmenu-v a {
+    border-top: 1px dotted #FFF;
+    border-right: 1px dotted #FFF;
+    padding: 6px;
+    display: block;
+    background: #003366;
+    color: #FFF;
+    font: bold 11px Arial, sans-serif;
+    text-decoration: none;
+    height: 1%;
+}
+
+ul#navmenu-v li:hover{
+    background-color: #001122;
+}
+
+/* Root Menu Hover Persistence */
+ul#navmenu-v a:hover, 
+ul#navmenu-v li:hover a,
+ul#navmenu-v li.iehover a {
+    background-color: #001122;
+    
+}
+
+/* 2nd Menu */
+ul#navmenu-v li:hover li a, ul#navmenu-v li.iehover li a {    
+    background-color: #003366;    
+}
+
+/* 2nd Menu Hover Persistence */
+ul#navmenu-v li:hover li a:hover,ul#navmenu-v li:hover li:hover a,ul#navmenu-v li.iehover li a:hover,ul#navmenu-v li.iehover li.iehover a {
+    background-color: #001122;
+}
+
+/* 3rd Menu */
+ul#navmenu-v li:hover li:hover li a,ul#navmenu-v li.iehover li.iehover li a {
+    background-color: #003366;
+}
+
+/* 3rd Menu Hover Persistence */
+ul#navmenu-v li:hover li:hover li a:hover,ul#navmenu-v li:hover li:hover li:hover a,ul#navmenu-v li.iehover li.iehover li a:hover,ul#navmenu-v li.iehover li.iehover li.iehover a {
+    background-color: #001122;
+}
+
+/* 4th Menu */
+ul#navmenu-v li:hover li:hover li:hover li a,ul#navmenu-v li.iehover li.iehover li.iehover li a {
+    background-color: #003366;
+}
+
+/* 4th Menu Hover */
+ul#navmenu-v li:hover li:hover li:hover li a:hover,ul#navmenu-v li.iehover li.iehover li.iehover li a:hover {
+    background-color: #001122;
+}
+
+/* Hover Function - Do Not Move */
+ul#navmenu-v li:hover ul ul,ul#navmenu-v li:hover ul ul ul,ul#navmenu-v li.iehover ul ul,ul#navmenu-v li.iehover ul ul ul { display: none; }
+ul#navmenu-v li:hover ul,ul#navmenu-v ul li:hover ul,ul#navmenu-v ul ul li:hover ul,ul#navmenu-v li.iehover ul,ul#navmenu-v ul li.iehover ul,ul#navmenu-v ul ul li.iehover ul { display: block; }
+
+/* Problema MENU X Tabs */
+ul.ui-tabs-nav{
+    height: 30px;
+}

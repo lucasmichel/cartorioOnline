@@ -1,0 +1,244 @@
+/* codificação utf-8 */
+/* BODY */
+body{
+    background-color: #FFFFFF;
+}
+
+html, body {
+    height: 100%; 
+    margin: 0; 
+    padding: 0;
+}
+
+body * {
+    font-family: Arial;
+    font-size: 12px;    
+}
+
+/* TABELA */
+table.lista{
+    border: 1px solid #F4F4F4;
+}
+
+table.lista tr.titulo{
+    background-color: #003366;
+    font-weight: bold;
+}
+
+table.lista tr.titulo td{
+    color: #FFF;
+}
+
+/* LINKS */
+a { text-decoration: none; outline: 0; color: #003366;}
+a:hover{ text-decoration: underline; }
+
+/* FORMULARIOS */
+form fieldset, fieldset{
+    margin-top: 5px;
+    border: 1px solid #F4F4F4;
+}
+
+form a.adicionar{
+    font-weight: bold;
+    font-size: 10px;
+}
+
+form fieldset legend, fieldset legend{
+    font-weight: bold;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+form fieldset.coluna{
+    display: inline;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+}
+
+form fieldset.linha{
+    display: block;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;    
+    width: auto;
+    margin-top: 5px;
+}
+
+form .campoData {
+    /*background-color: #F4F4F4;
+    border: 1px solid #CCCCCC;
+    padding: 5px;*/
+    width: 120px;
+    // outline-color: #2B6FB6;
+}
+
+form .campoValor {
+    /*background-color: #F4F4F4;
+    border: 1px solid #CCCCCC;
+    padding: 5px;*/
+    width: 100px;
+    // outline-color: #2B6FB6;
+}
+
+form .campoTextoPadrao, form .campoSelect, form textarea, form .campoData, form .campoValor{
+    /*background-color: #F4F4F4;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    outline-color: #2B6FB6;
+    text-transform: uppercase;*/
+    
+    background: #FAFAFA;
+    font-size: 12px;
+    border: 1px solid #AAA;
+    -moz-border-radius: 3px;
+    border-radius: 5px;
+    padding: 9px;
+    color: #333;
+    text-transform: uppercase;
+    outline-color: #2B6FB6;
+}
+
+/*form textarea{
+    background-color: #F4F4F4;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    outline-color: #2B6FB6;
+}*/
+
+form .botao{
+    background-color: #001122;
+    border: 1px solid #001122;
+    color: #FFFFFF;
+    padding: 6px 20px 7px 20px;    
+    margin: 10px 10px 0px 0px;
+    outline-color: #2B6FB6;
+    border-radius: 5px;
+}
+
+form .botao:hover{
+    background-color: #002142;
+    cursor: pointer;
+    border: 1px solid #001122;
+}
+
+form label{
+    margin-top: 2px;
+    margin-bottom: 2px; 
+    display: block;
+}
+
+/* quando o focus está no elemento */
+/* quando o focus sai do elemento */
+.focus{
+    outline-color: #FF4242 !important;
+}
+
+.h1CamposObrigatorios{
+    margin-bottom: 20px;
+}
+
+h1.titulo{
+    font-size: 30px;    
+    text-align: center;
+}
+h2.subtitulo{
+    font-size: 20px;
+    text-align: center;
+}
+
+h3.subtitulo{
+    font-size: 14px;
+    text-align: center;
+}
+
+h1.titulo_relatorio{
+    font-size: 20px;
+}
+h2.subtitulo_relatorio{
+    font-size: 16px;
+}
+
+/* Layout */
+/* Estrutura principal */
+#container {
+    position: relative; 
+    min-height: 95%; /* retira do 5% para o rodapé */
+}
+
+* html #container {
+    height:100%; /* hack para IE6 hq trata height como min-height */
+}
+
+/* Head TOPO */
+#topo { 
+    height: 44px; 
+    padding: 0px;
+    width: 100%; 
+    margin: 0 auto; 
+    background-color: #003366; 
+    color: #FFFFFF;
+}
+
+#topo #logo{ 
+    margin: 2px 0px 0px 10px; 
+    /*margin: 12px 0px 10px 10px; */
+}
+
+#topo .alinhamentoEsquerdoMenuHeader{
+    float: right;
+    margin: 14px 10px 14px 0px;
+}
+
+/* SAUDACAO */
+#saudacao {
+    margin: 0px;
+    padding: 10px;
+}
+
+#saudacao p{
+    margin: 0px;
+    padding: 0px;
+    border: 1px;
+}
+
+/* NAVEGAÇÃO */
+#navegacao {
+    margin: 0px;
+    padding: 10px;
+    height: 15px;
+}
+
+/* CONTENT PRINCIPAL */
+#content {
+    padding-bottom: 10px;
+}
+
+/* RODAPE */
+#rodape {        
+    width: 100%; 
+    margin: 0 auto; 
+    background-color: #003366; 
+    color: #FFFFFF;
+    height: 5%;   
+    text-align: center;
+}
+
+#rodape p{   
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+/* Exportacao */
+#divexport{
+    margin-bottom: 10px;
+}
+
+#divexport iframe{
+    width: 1px; 
+    height: 1px; 
+    border: 0px;
+}

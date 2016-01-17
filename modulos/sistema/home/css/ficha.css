@@ -1,0 +1,53 @@
+*{
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#containerFicha{
+    width: 900px;    
+    margin: auto;
+}
+
+#containerFicha #cabecalho{
+    overflow: hidden;
+}
+
+#containerFicha #logo{
+    width: 500px;
+    float: left;
+}
+
+#containerFicha #titulo{
+    width: 390px;
+    float: right;
+    text-align: right;
+    padding-right: 10px;
+}
+
+#containerFicha #cabecalho, #containerFicha #logo, #containerFicha #titulo{
+    height: 120px;
+}
+
+#containerFicha #titulo h1{
+    font-size: 30px;
+    margin-top: 40px;
+}
+
+table.dadosFicha{
+    border-collapse: collapse;
+    border-color: #DCDCDC;
+    margin: auto;
+    width: 900px;
+}
+
+table.dadosFicha tr td{
+    border: 1px solid #CCC;
+    padding: 5px;
+}
+
+table.dadosFicha .cabecalhoFicha{
+    background-color: #F4F4F4;
+}
+
+#containerFicha #print{
+    text-align: right;
+}

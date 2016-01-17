@@ -1,0 +1,3 @@
+[09-Jan-2016 09:31:31 America/Recife] PHP Notice:  Undefined index: FPR_ID_EDICAO in /opt/lampp/htdocs/cartorioOnline/modulos/livroRegistro/livro-previo/classes/negocios/NegFolhaPrevio.php on line 265
+[09-Jan-2016 09:31:44 America/Recife] PHP Notice:  Undefined index: FPR_ID_EDICAO in /opt/lampp/htdocs/cartorioOnline/modulos/livroRegistro/livro-previo/classes/negocios/NegFolhaPrevio.php on line 265
+[09-Jan-2016 11:06:12 America/Recife] PHP Warning:  var_dump() expects at least 1 parameter, 0 given in /opt/lampp/htdocs/cartorioOnline/modulos/livroRegistro/livro-previo/classes/negocios/NegFolhaPrevio.php on line 220
